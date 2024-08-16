@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import "./Pagination.css"
+import { AuthContext } from "../Auth/Provider/AuthProvider";
+import { IoSearch } from "react-icons/io5";
 
 
 const All = () => {
 
     const axiosPublic = useAxiosPublic();
+    const { loading } = useContext(AuthContext);
 
     const [watches, setWatches] = useState([]);
     const [sortOrder, setSortOrder] = useState("lowToHigh");
@@ -44,7 +47,7 @@ const All = () => {
     }, [sortOrder, currentPage, selectedBrand, selectedCategory, priceRange]);
 
 
-    // Extract unique brand names and categories for filtering
+    // brandName and categoryName for filtering
     const uniqueBrands = [...new Set(watches.map((watch) => watch.brandName))];
     const uniqueCategories = [...new Set(watches.map((watch) => watch.categoryName))];
 
@@ -58,8 +61,6 @@ const All = () => {
 
 
 
-
-
     // Pagination
     let pages = [];
     for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
@@ -67,16 +68,32 @@ const All = () => {
     }
 
 
+    // Loading 
+    if (loading) return <div className="flex gap-4  p-4 flex-wrap justify-center">
+        <img className="w-48 h-48 animate-spin mt-96  lg:mt-32 lg:mb-32" src="https://www.svgrepo.com/show/199956/loading-loader.svg" alt="Loading icon"></img>
+    </div>;
+
 
     return (
         <div>
-            {/* Search Input */}
-            <input
-                type="text"
-                placeholder="Search by Category"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div>
+
+                {/* Search Input */}
+                <div className="flex relative justify-center lg:ml-96 rounded-md w-full px-4 max-w-xl mt-20 lg:mt-0">
+                    <input type="text" placeholder="Search watch name..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full p-3 rounded-md  border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   " />
+                    <button
+                        className="inline-flex items-center gap-2 bg-indigo-600 text-white text-lg font-semibold   px-3 rounded-r-md">
+                        <span>search</span>
+                        <span className="hidden md:block">
+                            <IoSearch />
+                        </span>
+                    </button>
+                </div>
+            </div>
+
 
             {/* Sort Dropdown */}
             <select onChange={(e) => setSortOrder(e.target.value)} value={sortOrder}>
