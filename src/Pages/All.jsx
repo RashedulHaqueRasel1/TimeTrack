@@ -76,65 +76,107 @@ const All = () => {
 
     return (
         <div>
-            <div>
 
-                {/* Search Input */}
-                <div className="flex relative justify-center lg:ml-96 rounded-md w-full px-4 max-w-xl mt-20 lg:mt-0">
-                    <input type="text" placeholder="Search watch name..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full p-3 rounded-md  border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   " />
-                    <button
-                        className="inline-flex items-center gap-2 bg-indigo-600 text-white text-lg font-semibold   px-3 rounded-r-md">
-                        <span>search</span>
-                        <span className="hidden md:block">
-                            <IoSearch />
-                        </span>
-                    </button>
+
+            {/*-------------- Search Input Start -----------*/}
+            <div className="flex relative justify-center lg:ml-96 rounded-md w-full px-4 max-w-xl   lg:mt-0">
+                <input type="text" placeholder="Search watch name..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full p-3 rounded-md mt-32 lg:mt-4 border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   " />
+                <button
+                    className="inline-flex items-center mt-32 lg:mt-4 gap-2 bg-indigo-600 text-white text-lg font-semibold   px-3 rounded-r-md">
+                    <span>search</span>
+                    <span className="hidden md:block">
+                        <IoSearch />
+                    </span>
+                </button>
+            </div>
+            {/*-------------- Search Input End -----------*/}
+
+
+
+            {/*----------  Sort Price Start---------- */}
+            <div className="flex relative justify-center lg:ml-96 rounded-md w-full px-4 max-w-xl   lg:mt-0">
+                <select
+                    onChange={(e) => setSortOrder(e.target.value)} value={sortOrder}
+                    className="h-10 border-2 border-indigo-600 focus:outline-none focus:border-indigo-600 text-black rounded px-2 md:px-3 py-0 md:py-1 tracking-wider mt-2">
+                    <option value="lowToHigh">Price: Low to High</option>
+                    <option value="highToLow">Price: High to Low</option>
+                    <option value="latestAdded">Latest Added</option>
+                </select>
+            </div>
+            {/*----------  Sort Price End---------- */}
+
+
+            {/* ---------- Filtering Start (Brand & Category) ---------- */}
+            <div className="flex justify-center ml-2 mt-2 lg:ml-40">
+
+                {/* --- Filter by Brand Name ---*/}
+                <div className="  rounded-md w-full px-4 max-w-xl   lg:mt-0">
+
+                    <select onChange={(e) => setSelectedBrand(e.target.value)} value={selectedBrand}
+                        className="h-10 border-2 border-indigo-600 focus:outline-none focus:border-indigo-600 text-black rounded px-2 md:px-3 py-0 md:py-1 tracking-wider ">
+                        <option value="">All Brands</option>
+                        {uniqueBrands.map((brand, index) => (
+                            <option key={index} value={brand}>
+                                {brand}
+                            </option>
+                        ))}
+                    </select>
+
                 </div>
+
+
+                {/* --- Filter by Category Name --- */}
+                <div className="  rounded-md w-full px-4 max-w-xl   lg:mt-0">
+
+                    <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}
+                        className="h-10 border-2 border-indigo-600 focus:outline-none focus:border-indigo-600 text-black rounded px-2 md:px-3 py-0 md:py-1 tracking-wider  ">
+                        <option value="">All Categories</option>
+                        {uniqueCategories.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
+
+                </div>
+
             </div>
 
+            {/* ---------- Filtering End (Brand & Category) ---------- */}
 
-            {/* Sort Dropdown */}
-            <select onChange={(e) => setSortOrder(e.target.value)} value={sortOrder}>
-                <option value="lowToHigh">Price: Low to High</option>
-                <option value="highToLow">Price: High to Low</option>
-                <option value="latestAdded">Latest Added</option>
-            </select>
-
-            {/* Filter by Brand Name */}
-            <select onChange={(e) => setSelectedBrand(e.target.value)} value={selectedBrand}>
-                <option value="">All Brands</option>
-                {uniqueBrands.map((brand, index) => (
-                    <option key={index} value={brand}>
-                        {brand}
-                    </option>
-                ))}
-            </select>
-
-            {/* Filter by Category Name */}
-            <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
-                <option value="">All Categories</option>
-                {uniqueCategories.map((category, index) => (
-                    <option key={index} value={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
 
             {/* Filter by Price Range */}
-            <input
-                type="number"
-                placeholder="Min Price"
-                value={priceRange.min}
-                onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
-            />
-            <input
-                type="number"
-                placeholder="Max Price"
-                value={priceRange.max}
-                onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
-            />
+
+            <div className="flex justify-center ml-2 mt-2 lg:ml-40">
+                <div className="rounded-md w-full px-4 max-w-xl   lg:mt-0">
+                    <label className="label">
+                        <span className="font-medium">Min Price :</span>
+                    </label>
+                    <input
+                        type="number"
+                        placeholder="Min Price"
+                        className="w-32  p-3 rounded-md   border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   "
+                        value={priceRange.min}
+                        onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
+                    />
+                </div>
+
+                <div className="rounded-md w-full px-4 max-w-xl   lg:mt-0">
+                    <label className="label">
+                        <span className="font-medium">Max Price :</span>
+                    </label>
+                    <input
+                        type="number"
+                        placeholder="Max Price"
+                        className="w-40  p-3 rounded-md  border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   "
+                        value={priceRange.max}
+                        onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
+                    />
+                </div>
+            </div>
 
             {/* Displaying Watches */}
             <ul className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16 p-4">
