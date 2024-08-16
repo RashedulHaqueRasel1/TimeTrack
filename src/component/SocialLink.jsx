@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import useAxiosSecure from "../../useHook/useAxiosSecure";
 import { AuthContext } from "../Auth/Provider/AuthProvider";
@@ -12,7 +12,7 @@ const SocialLink = () => {
     // const axiosSecure = useAxiosSecure();
     const { googleLogin } = useContext(AuthContext);
     // console.log(googleLogin)
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     // // Google Sing in
     const handleGoogleSignIn = () => {
@@ -38,7 +38,7 @@ const SocialLink = () => {
 
                 //         navigate('/')
                 //     })
-                //     navigate('/')
+                    navigate('/')
 
                 // Page Change
 

@@ -1,18 +1,17 @@
 import { useContext, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ImMenu } from "react-icons/im";
 import { ImCross } from "react-icons/im";
 import LogoImg from "../assets/logo (2).png"
 import { AuthContext } from '../Auth/Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
-// import { AuthContext } from '../Auth/Provider/AuthProvider';
-// import Swal from 'sweetalert2';
+
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [state, setState] = useState(false)
-    // const navigation = useNavigate();
+    const navigation = useNavigate();
 
 
     // // handle LogOut Btn
@@ -36,24 +35,6 @@ const Navbar = () => {
         </li>
 
 
-        <li>
-            <NavLink to={'/contact'} className='inline-flex items-center justify-center w-full px-7 py-4 text-base font-bold leading-6 text-white  border-transparent rounded-full md:w-auto hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>Contact Us</NavLink>
-        </li>
-
-        {
-            user && <>
-
-                <li>
-                    <NavLink to={'/favorite'} className='inline-flex items-center justify-center w-full px-7 py-4 text-base font-bold leading-6 text-white  border-transparent rounded-full md:w-auto hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>Favorite</NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={'/profile'} className='inline-flex items-center justify-center w-full px-7 py-4 text-base font-bold leading-6 text-white  border-transparent rounded-full md:w-auto hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>Profile</NavLink>
-                </li>
-
-
-            </>
-        }
     </>
 
 

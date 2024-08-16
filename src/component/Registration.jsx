@@ -1,20 +1,17 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-// import SocialLink from "./SocialLink/SocialLink";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import reg from "../assets/Registration.json"
 import Lottie from "lottie-react";
 import { AuthContext } from "../Auth/Provider/AuthProvider";
 import SocialLink from "./SocialLink";
-// import useAxiosPublic from "../../hook/useAxiosPublic/useAxiosPublic";
 
 
 
 const Registration = () => {
 
-    // const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState(false);
     const [errorPassword, setErrorPassword] = useState("");
     const { createUser, userUpdateProfile } = useContext(AuthContext);
@@ -143,7 +140,7 @@ const Registration = () => {
                                 <label className="label mt-4">
                                     <span className="font-bold ">Password</span>
                                 </label>
-                                <label className="  flex items-center gap-2 border-blue-300 bg-white mt-3  border rounded-3xl   ">
+                                <label className="  flex input items-center gap-2 border-blue-300 bg-white mt-3  border rounded-xl   ">
                                     <input
                                         type={showPassword ? "text" : "password"}
                                         placeholder="Your Password"
