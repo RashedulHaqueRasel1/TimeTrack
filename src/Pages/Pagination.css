@@ -1,0 +1,40 @@
+/* @import "../../../../../css-config/mixins.scss"; */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 1rem;
+
+    span{
+       
+        
+    }
+
+
+button {
+    width: 40px;
+    height: 40px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 255, 0.705);
+    color: #000000;
+    border-color: #eee;
+    border-radius: 100%;
+    border: none;
+
+
+&.active {
+    font-weight: 900;
+    border-color: #101010;
+    background: #ffe400;
+    color: #101010;
+}
+}
+}
