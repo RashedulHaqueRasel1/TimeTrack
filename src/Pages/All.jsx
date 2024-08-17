@@ -83,7 +83,7 @@ const All = () => {
 
             {/*-------------- Search Input Start -----------*/}
             <div className="flex relative justify-center lg:ml-96 rounded-md w-full px-4 max-w-xl   lg:mt-0">
-                <input type="text" placeholder="Search watch name..."
+                <input type="text" placeholder="Search product name..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full p-3 rounded-md mt-32 lg:mt-4 border-blue-300   input-bordered border  placeholder-gray-500 dark:placeholder-gray-500 dark:border-indigo-600 dark:text-black   " />
@@ -219,15 +219,16 @@ const All = () => {
                             </div>
 
                             <h1 className="font-bold mt-2 text-center text-2xl">{watch.name}</h1>
-                            <h3 className="font-medium text-xl mt-1">
+                            <h3 className=" text-xl mt-2">
+                                <span className="opacity-90 font-medium">Price</span> : <span className="text-rose-500 font-medium">$ {watch.discountPrice} <span className="text-gray-500 line-through ml-2">$ {watch.price}</span></span>
+                            </h3>
+                            <h3 className="font-medium">
                                 <span className="opacity-90">Category </span> : <span className="hover:text-rose-500">{watch.categoryName}</span>
                             </h3>
-                            <h3 className="font-medium text-xl mt-2">
-                                <span className="opacity-90">Price</span> : <span className="text-rose-500">$ {watch.discountPrice} <span className="text-gray-500 line-through ml-2">$ {watch.price}</span></span>
-                            </h3>
+
                             <div className="flex justify-between">
-                                <div className="mt-2">
-                                    <p><span className=" ">Publish:</span> <span className=" text-black">{watch.creationDate}</span></p>
+                                <div className=" font-medium">
+                                    <p><span className=" font-medium opacity-90">Publish:</span> <span className=" text-black font-medium">{watch.creationDate}</span></p>
                                 </div>
                                 <div>
                                     {watch.creationTime}
