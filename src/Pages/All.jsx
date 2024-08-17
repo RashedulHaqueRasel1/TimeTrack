@@ -192,9 +192,7 @@ const All = () => {
                 <ul className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16 p-4">
                     {filteredWatches.map((watch, index) => (
                         <li key={index} className="w-full max-w-sm overflow-hidden hover:bg-blue-300 bg-blue-200 border-2 border-blue-400 rounded-2xl p-6 shadow-lg  ">
-                            {/* <img src={watch.img} alt={watch.categoryName} className="w-96 h-72 " /> */}
                             <div className="relative">
-                                {/* <img className="w-full h-64 object-cover" src="https://picsum.photos/200/200" alt="Image"> */}
                                 <img src={watch.photo} alt={watch.categoryName} className="w-96 h-72 object-cover" />
                                 <div className="absolute top-0 right-0">
                                     <div className="w-32 h-8 absolute top-4 -right-8">
@@ -219,9 +217,11 @@ const All = () => {
                             </div>
 
                             <h1 className="font-bold mt-2 text-center text-2xl">{watch.name}</h1>
+
                             <h3 className=" text-xl mt-2">
                                 <span className="opacity-90 font-medium">Price</span> : <span className="text-rose-500 font-medium">$ {watch.discountPrice} <span className="text-gray-500 line-through ml-2">$ {watch.price}</span></span>
                             </h3>
+
                             <h3 className="font-medium">
                                 <span className="opacity-90">Category </span> : <span className="hover:text-rose-500">{watch.categoryName}</span>
                             </h3>
@@ -234,6 +234,7 @@ const All = () => {
                                     {watch.creationTime}
                                 </div>
                             </div>
+                            
                             <p className=""><span className="text-[18px] font-medium opacity-80 mt-2">Description</span> : <span className="opacity-80 text-black">{watch.shortDescription}</span></p>
 
                             <button className="p-2 px-6 mt-4 ml-24 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add To Cart</button>
