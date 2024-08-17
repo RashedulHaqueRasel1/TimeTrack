@@ -187,7 +187,7 @@ const All = () => {
 
 
 
-            {/* Displaying Watches */}
+            {/* ---------- Displaying Watches ---------- */}
             <div className="">
                 <ul className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16 p-4">
                     {filteredWatches.map((watch, index) => (
@@ -234,7 +234,7 @@ const All = () => {
                                     {watch.creationTime}
                                 </div>
                             </div>
-                            
+
                             <p className=""><span className="text-[18px] font-medium opacity-80 mt-2">Description</span> : <span className="opacity-80 text-black">{watch.shortDescription}</span></p>
 
                             <button className="p-2 px-6 mt-4 ml-24 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add To Cart</button>
