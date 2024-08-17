@@ -20,7 +20,7 @@ const All = () => {
     const [totalItems, setTotalItems] = useState(0);
     const [selectedBrand, setSelectedBrand] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
 
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const All = () => {
     // Searching For categoryName
     const [searchTerm, setSearchTerm] = useState('');
     const filteredWatches = watches.filter((watch) =>
-        watch.categoryName.toLowerCase().includes(searchTerm.toLowerCase())
+        watch.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
 
@@ -195,7 +195,7 @@ const All = () => {
                             {/* <img src={watch.img} alt={watch.categoryName} className="w-96 h-72 " /> */}
                             <div className="relative">
                                 {/* <img className="w-full h-64 object-cover" src="https://picsum.photos/200/200" alt="Image"> */}
-                                <img src={watch.img} alt={watch.categoryName} className="w-96 h-72 object-cover" />
+                                <img src={watch.photo} alt={watch.categoryName} className="w-96 h-72 object-cover" />
                                 <div className="absolute top-0 right-0">
                                     <div className="w-32 h-8 absolute top-4 -right-8">
                                         <div
@@ -203,29 +203,39 @@ const All = () => {
                                             {watch.brandName}</div>
                                     </div>
                                 </div>
+                                <div
+                                    className="absolute bottom-2 left-0  px-2 py-0 text-white text-sm  ">
+                                    {watch.stock === 'in stock' ? <><h1 className="bg-green-500 text-black font-medium px-4 py-2 rounded-full">{watch.stock}</h1></> : <><h1 className="bg-red-500 text-black font-medium px-4 py-2 rounded-full">{watch.stock}</h1></>}
+                                </div>
+                            </div>
+                            <div className="space-x-1 flex justify-center mt-4">
+                                <h1 className="px-2 text-sm font-bold">
+                                    <Rating
+                                        style={{ maxWidth: 100 }}
+                                        value={watch.ratings}
+                                        readOnly
+                                    />
+                                </h1>
                             </div>
 
-                            <h1 className="font-bold mt-2 text-center text-2xl">{watch.categoryName}</h1>
+                            <h1 className="font-bold mt-2 text-center text-2xl">{watch.name}</h1>
                             <h3 className="font-medium text-xl mt-1">
-                                <span className="opacity-90">Price</span> : <span className="hover:text-rose-500">$ {watch.price}</span>
+                                <span className="opacity-90">Category </span> : <span className="hover:text-rose-500">{watch.categoryName}</span>
+                            </h3>
+                            <h3 className="font-medium text-xl mt-2">
+                                <span className="opacity-90">Price</span> : <span className="text-rose-500">$ {watch.discountPrice} <span className="text-gray-500 line-through ml-2">$ {watch.price}</span></span>
                             </h3>
                             <div className="flex justify-between">
-                                <div>
-                                    <p><span className="opacity-90">Publish:</span> <span className="opacity-80 text-black">{watch.creationDate}</span></p>
+                                <div className="mt-2">
+                                    <p><span className=" ">Publish:</span> <span className=" text-black">{watch.creationDate}</span></p>
                                 </div>
                                 <div>
-                                    <div className="flex items-center  text-gray-700 dark:text-gray-200">
-                                        <h1 className="px-2 text-sm font-bold">
-                                            <Rating
-                                                style={{ maxWidth: 100 }}
-                                                value={watch.ratings}
-                                                readOnly
-                                            />
-                                        </h1>
-                                    </div>
+                                    {watch.creationTime}
                                 </div>
                             </div>
-                            <p className=""><span className="text-[18px] font-medium opacity-80">Description</span> : <span className="opacity-80 text-black">{watch.shortDescription}</span></p>
+                            <p className=""><span className="text-[18px] font-medium opacity-80 mt-2">Description</span> : <span className="opacity-80 text-black">{watch.shortDescription}</span></p>
+
+                            <button className="p-2 px-6 mt-4 ml-24 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add To Cart</button>
 
                         </li>
                     ))}
